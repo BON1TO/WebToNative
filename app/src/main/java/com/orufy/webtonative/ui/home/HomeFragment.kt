@@ -1,13 +1,13 @@
 package com.orufy.webtonative.ui.home
 
 import android.os.Bundle
-import androidx.core.content.ContextCompat
 import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.LinearLayout
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
@@ -24,38 +24,26 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentHomeBinding.bind(view)
+
+        // ✅ THIS WAS MISSING (VERY IMPORTANT)
+        binding.topAppBar.inflateMenu(R.menu.menu_home)
+
+        // Black overflow dots
         binding.topAppBar.overflowIcon =
             ContextCompat.getDrawable(requireContext(), R.drawable.ic_overflow_black)
 
-
-        binding.topAppBar.setOnMenuItemClickListener {
-            if (it.itemId == R.id.action_history) {
-                findNavController().navigate(
-                    R.id.action_homeFragment_to_historyFragment
-                )
-                true
-            } else false
+        // History menu click
+        binding.topAppBar.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.action_history -> {
+                    findNavController().navigate(
+                        R.id.action_homeFragment_to_historyFragment
+                    )
+                    true
+                }
+                else -> false
+            }
         }
-
-        binding.topAppBar.menu.findItem(R.id.action_history)
-            .actionView
-            ?.setOnClickListener {
-                findNavController().navigate(
-                    R.id.action_homeFragment_to_historyFragment
-                )
-            }
-
-        binding.topAppBar.menu.findItem(R.id.action_history)
-            .actionView
-            ?.findViewById<View>(R.id.btnHistory)
-            ?.setOnClickListener {
-                findNavController().navigate(
-                    R.id.action_homeFragment_to_historyFragment
-                )
-            }
-
-
-
 
         // Entry animation
         binding.contentCard.startAnimation(
@@ -64,6 +52,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         setupCarousel()
 
+        // Open website
         binding.btnOpen.setOnClickListener {
             val inputUrl = binding.etUrl.text.toString().trim()
 
@@ -79,7 +68,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     "https://$inputUrl"
                 }
 
-            // ✅ ADDED: save before navigating
+            // Save to history
             saveToHistory(finalUrl)
 
             val bundle = Bundle().apply {
@@ -90,6 +79,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 R.id.action_homeFragment_to_webViewFragment,
                 bundle
             )
+        }
+
+        // Exit app
+        binding.btnExit.setOnClickListener {
+            requireActivity().finishAffinity()
         }
     }
 

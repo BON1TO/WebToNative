@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,29 +6,43 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient_soft">
 
-    <!-- Top App Bar -->
+    <!-- TOP BAR (NOTCH SAFE) -->
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/topAppBar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:paddingTop="12dp"
-        android:paddingBottom="12dp"
         android:background="@android:color/transparent"
         android:elevation="0dp"
-        android:title="WebToNative"
-        android:titleTextColor="#1F2937"
-        app:menu="@menu/menu_home"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- EXIT BUTTON -->
+        <TextView
+            android:id="@+id/btnExit"
+            android:layout_width="wrap_content"
+            android:layout_height="52dp"
+            android:gravity="center"
+            android:text="Exit"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#111827"
+            android:paddingStart="14dp"
+            android:paddingEnd="18dp"
+            android:layout_marginStart="0dp"
+            android:contentInsetStart="0dp"
+            android:layout_marginTop="7dp"
+            android:clickable="true"
+            android:focusable="true"/>
 
 
 
 
+    </com.google.android.material.appbar.MaterialToolbar>
 
-
-
-    <!-- Main Content Card -->
+    <!-- MAIN CONTENT CARD -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/contentCard"
         android:layout_width="0dp"
@@ -71,7 +84,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tvTitle"
                 app:layout_constraintStart_toStartOf="parent"/>
 
-            <!-- Subtle divider -->
+            <!-- Divider -->
             <View
                 android:id="@+id/divider"
                 android:layout_width="40dp"
@@ -94,7 +107,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
-            <!-- Dot Indicator -->
+            <!-- DOTS -->
             <LinearLayout
                 android:id="@+id/dotsLayout"
                 android:layout_width="wrap_content"
@@ -106,8 +119,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
-
-            <!-- URL Input -->
+            <!-- URL INPUT -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/urlInputLayout"
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
@@ -132,8 +144,7 @@
                     android:inputType="textUri"/>
             </com.google.android.material.textfield.TextInputLayout>
 
-
-            <!-- Open Button -->
+            <!-- OPEN BUTTON -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnOpen"
                 android:layout_width="0dp"

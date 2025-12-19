@@ -3,6 +3,8 @@ package com.orufy.webtonative.ui.history
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,6 +24,18 @@ class HistoryFragment : Fragment(R.layout.fragment_history) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentHistoryBinding.bind(view)
 
+        // ✅ FIX: push UI below status bar / notch
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(
+                systemBars.left,
+                systemBars.top,
+                systemBars.right,
+                systemBars.bottom
+            )
+            insets
+        }
+
         val prefs = requireContext()
             .getSharedPreferences("history_prefs", 0)
 
@@ -30,7 +44,7 @@ class HistoryFragment : Fragment(R.layout.fragment_history) {
             findNavController().navigateUp()
         }
 
-        // Load history
+        // 📜 Load history
         val historyList = prefs.getStringSet("urls", emptySet())!!
             .toList()
             .reversed()
@@ -49,18 +63,24 @@ class HistoryFragment : Fragment(R.layout.fragment_history) {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
 
-        // ☰ Toolbar menu (SINGLE listener)
+        // ☰ Toolbar menu (ONLY ONE listener)
         binding.historyToolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
 
+                // 🗑 Clear history
                 R.id.action_clear -> {
                     prefs.edit().clear().apply()
                     historyList.clear()
                     adapter.notifyDataSetChanged()
-                    Toast.makeText(requireContext(), "History cleared", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        "History cleared",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     true
                 }
 
+                // ⬆ Upload history
                 R.id.action_upload -> {
                     uploadHistory(prefs)
                     true
@@ -69,7 +89,6 @@ class HistoryFragment : Fragment(R.layout.fragment_history) {
                 else -> false
             }
         }
-
     }
 
     // ⬆ Upload history to Beeceptor
@@ -77,7 +96,11 @@ class HistoryFragment : Fragment(R.layout.fragment_history) {
         val history = prefs.getStringSet("urls", emptySet()) ?: emptySet()
 
         if (history.isEmpty()) {
-            Toast.makeText(requireContext(), "No history to upload", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                "No history to upload",
+                Toast.LENGTH_SHORT
+            ).show()
             return
         }
 
@@ -103,7 +126,10 @@ class HistoryFragment : Fragment(R.layout.fragment_history) {
                 requireActivity().runOnUiThread {
                     Toast.makeText(
                         requireContext(),
-                        if (success) "History uploaded successfully" else "Upload failed",
+                        if (success)
+                            "History uploaded successfully"
+                        else
+                            "Upload failed",
                         Toast.LENGTH_SHORT
                     ).show()
                 }

@@ -1,48 +1,59 @@
-# WebToNative 🌐📱
+# WebToNative 
 
-A modern Android app that lets you open any website inside the app with a clean browser-like UI, history tracking, and upload support.
-
----
-
-## 📸 Screenshots
-
-### Home Screen
-![Home](one.jpg)
-
-### Web View
-![WebView](two.jpg)
-
-### History Page
-![History](three.jpg)
+WebToNative is a modern Android application that allows users to open any website inside the app with a clean, browser-like experience.  
+It includes URL history tracking, upload support, and a polished Material UI.
 
 ---
 
-## ✨ Features
+##  Screenshots
 
-- Open any website inside the app
-- Browser-style URL bar
-- Website history tracking
-- Upload history to server (Beeceptor)
-- Clean Material UI
-- Carousel onboarding
-- Works with back navigation properly
+<p align="center">
+  <img src="one.jpg" width="260" />
+  <img src="two.jpg" width="260" />
+  <img src="three.jpg" width="260" />
+</p>
 
----
-
-## 🛠 Tech Stack
-
-- Kotlin
-- Android Jetpack
-- Navigation Component
-- ViewBinding
-- WebView
-- SharedPreferences
-- Material Design 3
+<p align="center">
+  <b>Home</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <b>Web View</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <b>History</b>
+</p>
 
 ---
 
-## 🚀 How to Run
+##  Features
 
-1. Clone the repo
+-  Open any website inside the app  
+-  Browser-style URL bar  
+-  Website history tracking  
+-  Clear browsing history  
+-  Upload history to server (Beeceptor mock API)  
+-  Clean Material Design UI  
+-  Carousel onboarding  
+-  Proper back navigation handling  
+
+---
+
+##  Tech Stack
+
+- **Language:** Kotlin  
+- **UI:** Material Design 3  
+- **Architecture:** Android Jetpack  
+- **Navigation:** Navigation Component  
+- **View Binding:** Enabled  
+- **Web Rendering:** WebView  
+- **Storage:** SharedPreferences  
+- **Networking:** HttpURLConnection  
+
+---
+
+
+---
+
+##  How to Run
+
+1. Clone the repository  
    ```bash
    git clone https://github.com/BON1TO/WebToNative.git
+
+

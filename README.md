@@ -7,17 +7,12 @@ It includes URL history tracking, upload support, and a polished Material UI.
 
 ##  Screenshots
 
-<p align="center">
-  <img src="one.jpg" width="260" />
-  <img src="two.jpg" width="260" />
-  <img src="three.jpg" width="260" />
-</p>
+## 📸 Screenshots
 
-<p align="center">
-  <b>Home</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <b>Web View</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <b>History</b>
-</p>
+| Home | Web View | History |
+|------|----------|---------|
+| <img src="one.jpg" width="260"/> | <img src="two.jpg" width="260"/> | <img src="three.jpg" width="260"/> |
+
 
 ---
 

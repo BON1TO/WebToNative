@@ -1,0 +1,36 @@
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.orufy.webtonative.ui.home.HomeFragment"
+        android:label="Home">
+
+        <action
+            android:id="@+id/action_homeFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment"/>
+
+        <action
+            android:id="@+id/action_homeFragment_to_historyFragment"
+            app:destination="@id/historyFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/webViewFragment"
+        android:name="com.orufy.webtonative.ui.webview.WebViewFragment"
+        android:label="WebView"/>
+
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.orufy.webtonative.ui.history.HistoryFragment"
+        android:label="History">
+
+        <action
+            android:id="@+id/action_historyFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment"/>
+    </fragment>
+
+</navigation>
